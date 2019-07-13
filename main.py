@@ -4,6 +4,10 @@ from validate_email import validate_email
 app = Flask(__name__)
 app.config["DEBUG"] = True
 
+def check_character_len(string):
+    if len(string) > 20 or len(string < 3):
+        return False
+
 @app.route("/", methods=["GET"])
 def base_page():
     return render_template("their.html")
@@ -14,15 +18,16 @@ def signup():
     password = request.form["password"]
     verify = request.form["verify"]
     email = request.form["email"]
-    if username == "":
+    string_len = True
+    if username == "" or check_character_len(username) == False:
         username_error = "That's not a valid username"
     else:
         username_error = ""
-    if password == "":
+    if password == "" check_character_len(password == False:
         password_error = "That's not a valid password"
     else:
         password_error = ""
-    if verify == "" or verify != password:
+    if verify == "" or verify != password or check_character_len(verify) == False:
         verify_error = "Passwords don't match"
     else:
         verify_error = ""
